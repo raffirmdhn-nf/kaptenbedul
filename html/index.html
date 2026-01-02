@@ -1,44 +1,601 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kapten Bedul</title>
+    <title>PT. Adilla Ganteng Sejahtera Makmur Aamiin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
-    <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+      * {
+        font-family: "Inter", sans-serif;
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .fade-in {
+        animation: fadeIn 1s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .slide-in-left {
+        animation: slideInLeft 0.8s ease-out;
+      }
+
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .slide-in-right {
+        animation: slideInRight 0.8s ease-out;
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .hover-lift {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .hover-lift:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .pulse-slow {
+        animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.7;
+        }
+      }
+
+      .bg-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .glassmorphism {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .nav-shadow {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      }
+
+      .float {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      .scale-in {
+        animation: scaleIn 0.5s ease-out;
+      }
+
+      @keyframes scaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    </style>
   </head>
-
-  <body class="vh-100 d-flex justify-content-center align-items-center m-0">
-
-    <div class="container">
-      <div class="row d-flex align-items-center text-center text-md-start g-4">
-
-        <!-- TEKS (kiri di desktop, atas di mobile) -->
-        <div class="col-12 col-md-6 text-end">
-          <h1 class="text-dark" style="font-size: 2.5rem; margin-bottom: 10px;">
-            Sharelok Tak Parani!
-          </h1>
-          <h1 class="text-primary" style="font-size: 2.5rem; margin-top: 10px">
-            <u>Kapten Bedul</u> Ni Bos
-          </h1>
+  <body class="bg-white text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 glassmorphism nav-shadow">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16 sm:h-20">
+          <div class="text-xl sm:text-2xl font-bold gradient-text">PT. AGSMA</div>
+          <div class="hidden md:flex space-x-8">
+            <a href="#home" class="hover:text-purple-600 transition">Home</a>
+            <a href="#about" class="hover:text-purple-600 transition">About</a>
+            <a href="#services" class="hover:text-purple-600 transition">Services</a>
+            <a href="#team" class="hover:text-purple-600 transition">Team</a>
+            <a href="#contact" class="hover:text-purple-600 transition">Contact</a>
+          </div>
+          <button class="md:hidden" id="menuBtn">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
         </div>
-
-        <!-- GAMBAR (kanan di desktop, bawah di mobile) -->
-        <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start">
-          <img
-            src="./kapten.png"
-            alt="kapten.png"
-            style="width: 300px; height: auto"
-          />
-        </div>
-
       </div>
-    </div>
+      <div id="mobileMenu" class="hidden md:hidden glassmorphism">
+        <div class="px-4 py-4 space-y-3">
+          <a href="#home" class="block hover:text-purple-600 transition">Home</a>
+          <a href="#about" class="block hover:text-purple-600 transition">About</a>
+          <a href="#services" class="block hover:text-purple-600 transition">Services</a>
+          <a href="#team" class="block hover:text-purple-600 transition">Team</a>
+          <a href="#contact" class="block hover:text-purple-600 transition">Contact</a>
+        </div>
+      </div>
+    </nav>
 
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="pt-24 sm:pt-32 pb-16 sm:pb-20 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
+      <div class="container mx-auto">
+        <div class="text-center fade-in">
+          <div
+            class="inline-block px-4 py-2 bg-purple-100 rounded-full text-purple-600 text-sm mb-6 pulse-slow">
+            Innovating Today, Empowering Tomorrow
+          </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 leading-tight">
+            PT. Adilla Ganteng<br />
+            <span class="gradient-text">Sejahtera Makmur Aamiin</span>
+          </h1>
+          <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-10">
+            Perusahaan startup teknologi yang berfokus pada pengembangan solusi digital modern untuk
+            transformasi bisnis yang efisien
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="#services"
+              class="bg-gradient text-white px-8 py-4 rounded-full hover:shadow-xl transition transform hover:scale-105">
+              Explore Services
+            </a>
+            <a
+              href="#contact"
+              class="border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-full hover:bg-purple-50 transition">
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <div class="container mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="slide-in-left">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+              Tentang <span class="gradient-text">Kami</span>
+            </h2>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+              PT. Adilla Ganteng Sejahtera Makmur Aamiin adalah perusahaan startup teknologi yang
+              menggabungkan teknologi cloud, aplikasi web, AI dan otomatisasi untuk memberikan
+              layanan yang cepat, aman, dan dapat diandalkan.
+            </p>
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <div class="bg-purple-100 p-3 rounded-lg mr-4">
+                  <svg
+                    class="w-6 h-6 text-purple-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-lg mb-1">Visi</h3>
+                  <p class="text-gray-600">
+                    Menjadi perusahaan teknologi terkemuka di Asia Tenggara yang menghadirkan
+                    inovasi digital berkualitas tinggi
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slide-in-right">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-white p-6 rounded-2xl shadow-lg hover-lift">
+                <div class="text-4xl font-bold gradient-text mb-2">5+</div>
+                <div class="text-gray-600">Produk & Layanan</div>
+              </div>
+              <div class="bg-white p-6 rounded-2xl shadow-lg hover-lift">
+                <div class="text-4xl font-bold gradient-text mb-2">99%</div>
+                <div class="text-gray-600">Uptime</div>
+              </div>
+              <div class="bg-white p-6 rounded-2xl shadow-lg hover-lift">
+                <div class="text-4xl font-bold gradient-text mb-2">24/7</div>
+                <div class="text-gray-600">Support</div>
+              </div>
+              <div class="bg-white p-6 rounded-2xl shadow-lg hover-lift">
+                <div class="text-4xl font-bold gradient-text mb-2">100+</div>
+                <div class="text-gray-600">Happy Clients</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+      <div class="container mx-auto">
+        <div class="text-center mb-12 sm:mb-16 fade-in">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+            Produk & <span class="gradient-text">Layanan</span>
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Solusi teknologi terkini untuk mengakselerasi pertumbuhan bisnis Anda
+          </p>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover-lift scale-in">
+            <div
+              class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6 float">
+              <svg
+                class="w-8 h-8 text-purple-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3">AGSMA Cloud Platform</h3>
+            <p class="text-gray-600 mb-4">
+              Sistem cloud terintegrasi untuk hosting aplikasi, database, dan layanan API dengan
+              performa tinggi
+            </p>
+          </div>
+
+          <div
+            class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover-lift scale-in"
+            style="animation-delay: 0.1s">
+            <div
+              class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6 float">
+              <svg
+                class="w-8 h-8 text-purple-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3">AGSMA Business Suite</h3>
+            <p class="text-gray-600 mb-4">
+              Paket aplikasi bisnis lengkap seperti POS, manajemen inventori, dan CRM untuk
+              operasional optimal
+            </p>
+          </div>
+
+          <div
+            class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover-lift scale-in"
+            style="animation-delay: 0.2s">
+            <div
+              class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6 float">
+              <svg
+                class="w-8 h-8 text-purple-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Custom Software Development</h3>
+            <p class="text-gray-600 mb-4">
+              Layanan pembuatan aplikasi web & mobile sesuai kebutuhan spesifik bisnis Anda
+            </p>
+          </div>
+
+          <div
+            class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover-lift scale-in"
+            style="animation-delay: 0.3s">
+            <div
+              class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6 float">
+              <svg
+                class="w-8 h-8 text-purple-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3">AI & Automation Solutions</h3>
+            <p class="text-gray-600 mb-4">
+              Implementasi alur otomatis, chatbot, machine learning, dan analitik untuk efisiensi
+              maksimal
+            </p>
+          </div>
+
+          <div
+            class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover-lift scale-in"
+            style="animation-delay: 0.4s">
+            <div
+              class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6 float">
+              <svg
+                class="w-8 h-8 text-purple-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold mb-3">IT Managed Service</h3>
+            <p class="text-gray-600 mb-4">
+              Pemeliharaan sistem, monitoring server 24/7, dan keamanan digital terpercaya
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <div class="container mx-auto">
+        <div class="text-center mb-12 sm:mb-16">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+            Nilai-Nilai <span class="gradient-text">Kami</span>
+          </h2>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          <div class="text-center p-6 bg-white rounded-2xl hover-lift">
+            <div class="text-4xl mb-4">🤝</div>
+            <h4 class="font-bold mb-2">Integrity</h4>
+            <p class="text-sm text-gray-600">Kepercayaan & transparansi</p>
+          </div>
+          <div class="text-center p-6 bg-white rounded-2xl hover-lift">
+            <div class="text-4xl mb-4">💡</div>
+            <h4 class="font-bold mb-2">Innovation</h4>
+            <p class="text-sm text-gray-600">Kreativitas dalam solusi</p>
+          </div>
+          <div class="text-center p-6 bg-white rounded-2xl hover-lift">
+            <div class="text-4xl mb-4">⭐</div>
+            <h4 class="font-bold mb-2">Quality</h4>
+            <p class="text-sm text-gray-600">Standar terbaik</p>
+          </div>
+          <div class="text-center p-6 bg-white rounded-2xl hover-lift">
+            <div class="text-4xl mb-4">🎯</div>
+            <h4 class="font-bold mb-2">Customer Success</h4>
+            <p class="text-sm text-gray-600">Fokus pada klien</p>
+          </div>
+          <div class="text-center p-6 bg-white rounded-2xl hover-lift">
+            <div class="text-4xl mb-4">⚡</div>
+            <h4 class="font-bold mb-2">Agility</h4>
+            <p class="text-sm text-gray-600">Adaptif & cepat</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+      <div class="container mx-auto">
+        <div class="text-center mb-12 sm:mb-16">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+            Tim <span class="gradient-text">Profesional</span>
+          </h2>
+          <p class="text-gray-600">Didukung oleh tim ahli berpengalaman dan berdedikasi</p>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          <div class="text-center hover-lift bg-white p-6 rounded-2xl shadow-lg">
+            <div class="w-24 h-24 bg-gradient rounded-full mx-auto mb-4"></div>
+            <h4 class="font-bold mb-1">Erlangga Abidin</h4>
+            <p class="text-purple-600 text-sm mb-2">CEO / Founder</p>
+          </div>
+          <div class="text-center hover-lift bg-white p-6 rounded-2xl shadow-lg">
+            <div class="w-24 h-24 bg-gradient rounded-full mx-auto mb-4"></div>
+            <h4 class="font-bold mb-1">Alif Fadillah</h4>
+            <p class="text-purple-600 text-sm mb-2">CTO & QA Engineer</p>
+          </div>
+          <div class="text-center hover-lift bg-white p-6 rounded-2xl shadow-lg">
+            <div class="w-24 h-24 bg-gradient rounded-full mx-auto mb-4"></div>
+            <h4 class="font-bold mb-1">Raffi Ramadhan Tajudin</h4>
+            <p class="text-purple-600 text-sm mb-2">Lead Backend Engineer</p>
+          </div>
+          <div class="text-center hover-lift bg-white p-6 rounded-2xl shadow-lg">
+            <div class="w-24 h-24 bg-gradient rounded-full mx-auto mb-4"></div>
+            <h4 class="font-bold mb-1">Muhamad Iqbal</h4>
+            <p class="text-purple-600 text-sm mb-2">Lead Frontend Engineer</p>
+          </div>
+          <div class="text-center hover-lift bg-white p-6 rounded-2xl shadow-lg">
+            <div class="w-24 h-24 bg-gradient rounded-full mx-auto mb-4"></div>
+            <h4 class="font-bold mb-1">Alzafran Nobel Dwi Ari Putra</h4>
+            <p class="text-purple-600 text-sm mb-2">Product Manager</p>
+          </div>
+          <div class="text-center hover-lift bg-white p-6 rounded-2xl shadow-lg">
+            <div class="w-24 h-24 bg-gradient rounded-full mx-auto mb-4"></div>
+            <h4 class="font-bold mb-1">Muhamad Wildan</h4>
+            <p class="text-purple-600 text-sm mb-2">UI/UX Designer</p>
+          </div>
+          <div class="text-center hover-lift bg-white p-6 rounded-2xl shadow-lg">
+            <div class="w-24 h-24 bg-gradient rounded-full mx-auto mb-4"></div>
+            <h4 class="font-bold mb-1">Haydar Ali Ayyubmi</h4>
+            <p class="text-purple-600 text-sm mb-2">Marketing & Sales</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <div class="container mx-auto max-w-4xl">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+            Hubungi <span class="gradient-text">Kami</span>
+          </h2>
+          <p class="text-gray-600">Mari berdiskusi tentang proyek digital Anda</p>
+        </div>
+        <div class="bg-white p-8 sm:p-12 rounded-3xl shadow-xl">
+          <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <div>
+              <label class="block text-sm font-semibold mb-2">Nama</label>
+              <input
+                type="text"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-purple-600 focus:outline-none"
+                placeholder="Nama lengkap" />
+            </div>
+            <div>
+              <label class="block text-sm font-semibold mb-2">Email</label>
+              <input
+                type="email"
+                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-purple-600 focus:outline-none"
+                placeholder="email@example.com" />
+            </div>
+          </div>
+          <div class="mb-8">
+            <label class="block text-sm font-semibold mb-2">Pesan</label>
+            <textarea
+              rows="5"
+              class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-purple-600 focus:outline-none"
+              placeholder="Ceritakan kebutuhan Anda..."></textarea>
+          </div>
+          <button
+            class="w-full bg-gradient text-white py-4 rounded-full font-semibold hover:shadow-xl transition transform hover:scale-105">
+            Kirim Pesan
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+      <div class="container mx-auto">
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+          <div>
+            <h3 class="text-2xl font-bold gradient-text mb-4">PT. AGSMA</h3>
+            <p class="text-gray-400">Innovating Today, Empowering Tomorrow.</p>
+          </div>
+          <div>
+            <h4 class="font-bold mb-4">Quick Links</h4>
+            <div class="space-y-2 text-gray-400">
+              <a href="#about" class="block hover:text-white transition">About</a>
+              <a href="#services" class="block hover:text-white transition">Services</a>
+              <a href="#team" class="block hover:text-white transition">Team</a>
+              <a href="#contact" class="block hover:text-white transition">Contact</a>
+            </div>
+          </div>
+          <div>
+            <h4 class="font-bold mb-4">Contact Info</h4>
+            <div class="space-y-2 text-gray-400">
+              <p>Email: info@agsma.co.id</p>
+              <p>Phone: +62 21 1234 5678</p>
+              <p>Jakarta, Indonesia</p>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+          <p>&copy; 2025 PT. Adilla Ganteng Sejahtera Makmur Aamiin. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+            mobileMenu.classList.add("hidden");
+          }
+        });
+      });
+
+      // Intersection Observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".hover-lift").forEach(el => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(20px)";
+        el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+        observer.observe(el);
+      });
+    </script>
   </body>
 </html>
-  
