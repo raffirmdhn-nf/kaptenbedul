@@ -23,7 +23,7 @@ jobs:
           
           # 2. Copy semua file dari repo ke folder tujuan
           # --exclude .git: supaya folder git tidak ikut ke-copy
-          rsync -av --exclude='.git' --exclude='.github' ./src /home/kaptenbedul/bedultech/apps/dev/
+          rsync -av --exclude='.git' --exclude='.github' ./src/ /home/kaptenbedul/bedultech/apps/dev/
           
           echo "✅ Deployment to DEV success! Check at port 8080"
 
@@ -37,6 +37,6 @@ jobs:
           rm -rf /home/kaptenbedul/bedultech/apps/prod/*
           
           # 2. Copy semua file dari repo ke folder tujuan
-          rsync -av --exclude='.git' --exclude='.github' ./src /home/kaptenbedul/bedultech/apps/prod/
+          rsync -av --exclude='.git' --exclude='.github' ./src/ /home/kaptenbedul/bedultech/apps/prod/
           
           echo "✅ Deployment to PROD success! Check at port 80"
