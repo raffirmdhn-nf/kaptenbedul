@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy Simple Compro
 
 on:
   push:
@@ -9,14 +9,34 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      - name: Deploy DEV
+      # --- LOGIC UNTUK BRANCH DEV ---
+      - name: Deploy to DEV Environment
         if: github.ref == 'refs/heads/dev'
         run: |
-          docker compose -p dev --env-file .env.dev up -d --force-recreate
+          echo "🚀 Starting deployment to DEV..."
+          
+          # 1. Bersihkan folder tujuan di VM
+          rm -rf /home/kaptenbedul/bedultech/apps/dev/*
+          
+          # 2. Copy semua file dari repo ke folder tujuan
+          # --exclude .git: supaya folder git tidak ikut ke-copy
+          rsync -av --exclude='.git' --exclude='.github' ./src /home/kaptenbedul/bedultech/apps/dev/
+          
+          echo "✅ Deployment to DEV success! Check at port 8080"
 
-      - name: Deploy PROD
+      # --- LOGIC UNTUK BRANCH MAIN (PROD) ---
+      - name: Deploy to PROD Environment
         if: github.ref == 'refs/heads/main'
         run: |
-          docker compose -p prod --env-file .env.prod up -d --force-recreate
+          echo "🚀 Starting deployment to PROD..."
+          
+          # 1. Bersihkan folder tujuan di VM
+          rm -rf /home/kaptenbedul/bedultech/apps/prod/*
+          
+          # 2. Copy semua file dari repo ke folder tujuan
+          rsync -av --exclude='.git' --exclude='.github' ./src /home/kaptenbedul/bedultech/apps/prod/
+          
+          echo "✅ Deployment to PROD success! Check at port 80"
