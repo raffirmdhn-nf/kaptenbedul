@@ -1,4 +1,4 @@
-name: Deploy Simple Compro
+name: Deploy BedulTech Apps
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
 jobs:
   deploy:
     runs-on: self-hosted
+    # Pastikan user runner punya izin tulis ke folder target
 
     steps:
       - name: Checkout Code
@@ -17,26 +18,19 @@ jobs:
         if: github.ref == 'refs/heads/dev'
         run: |
           echo "🚀 Starting deployment to DEV..."
-          
-          # 1. Bersihkan folder tujuan di VM
-          rm -rf /home/kaptenbedul/bedultech/apps/dev/*
-          
-          # 2. Copy semua file dari repo ke folder tujuan
-          # --exclude .git: supaya folder git tidak ikut ke-copy
-          rsync -av --exclude='.git' --exclude='.github' ./src/ /home/kaptenbedul/bedultech/apps/dev/
-          
-          echo "✅ Deployment to DEV success! Check at port 8080"
+
+          # Gunakan rsync dengan --delete untuk sinkronisasi (bukan hapus paksa)
+          # Folder tujuan disesuaikan dengan struktur Ansible kita
+          rsync -av --delete --exclude='.git' --exclude='.github' ./src/ /home/ubuntu/bedultech/apps/dev/
+
+          echo "✅ Deployment to DEV success! Check at https://dev.bedultech.my.id"
 
       # --- LOGIC UNTUK BRANCH MAIN (PROD) ---
       - name: Deploy to PROD Environment
         if: github.ref == 'refs/heads/main'
         run: |
           echo "🚀 Starting deployment to PROD..."
-          
-          # 1. Bersihkan folder tujuan di VM
-          rm -rf /home/kaptenbedul/bedultech/apps/prod/*
-          
-          # 2. Copy semua file dari repo ke folder tujuan
-          rsync -av --exclude='.git' --exclude='.github' ./src/ /home/kaptenbedul/bedultech/apps/prod/
-          
-          echo "✅ Deployment to PROD success! Check at port 80"
+
+          rsync -av --delete --exclude='.git' --exclude='.github' ./src/ /home/ubuntu/bedultech/apps/prod/
+
+          echo "✅ Deployment to PROD success! Check at https://bedultech.my.id"
