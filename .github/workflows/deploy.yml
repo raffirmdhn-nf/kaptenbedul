@@ -21,7 +21,7 @@ jobs:
 
           # Gunakan rsync dengan --delete untuk sinkronisasi (bukan hapus paksa)
           # Folder tujuan disesuaikan dengan struktur Ansible kita
-          rsync -av --delete --exclude='.git' --exclude='.github' ./src/ /home/ubuntu/bedultech/apps/dev/
+          rsync -av --delete --exclude='.git' --exclude='.github' ./src/ $HOME/bedultech/apps/dev/
 
           echo "✅ Deployment to DEV success! Check at https://dev.bedultech.my.id"
 
@@ -31,6 +31,6 @@ jobs:
         run: |
           echo "🚀 Starting deployment to PROD..."
 
-          rsync -av --delete --exclude='.git' --exclude='.github' ./src/ /home/ubuntu/bedultech/apps/prod/
+          rsync -av --delete --exclude='.git' --exclude='.github' ./src/ $HOME/bedultech/apps/prod/
 
           echo "✅ Deployment to PROD success! Check at https://bedultech.my.id"
